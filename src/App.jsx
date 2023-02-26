@@ -1,9 +1,11 @@
 import './App.css'
+import { ListPokemon } from './components/ListPokemon'
 
 function App () {
   return (
     <div className='App'>
-      <h1>App pokedex</h1>
+      <h1>Pokemon Data</h1>
+      <ListPokemon />
     </div>
   )
 }
