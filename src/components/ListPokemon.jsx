@@ -4,6 +4,7 @@ import { PokemonContext } from '../context/PokemonContext'
 export const ListPokemon = () => {
   const context = useContext(PokemonContext)
   const { dataPokemon } = context
+  //   console.log('dataPokemon', dataPokemon)
   //   const localPokemon = JSON.parse(window.localStorage.getItem('dataPokemon'))
   //   console.log('localPokemon', localPokemon)
 
