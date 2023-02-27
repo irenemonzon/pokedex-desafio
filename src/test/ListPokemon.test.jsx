@@ -25,32 +25,10 @@ const mockDetailPokemon = [{
     }
   ]
 }]
-const mockfilterPokemon = [{
-  name: 'bulbasaur',
-  sprites: {
-    front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png'
-  },
-  types: [
-    {
-      slot: 1,
-      type: {
-        name: 'grass',
-        url: 'https://pokeapi.co/api/v2/type/12/'
-      }
-    },
-    {
-      slot: 2,
-      type: {
-        name: 'poison',
-        url: 'https://pokeapi.co/api/v2/type/4/'
-      }
-    }
-  ]
-}]
 
 beforeEach(() => {
   render(
-    <PokemonContext.Provider value={{ dataPokemon: mockDetailPokemon, allPokemon: mockfilterPokemon, pokemonSearch: 'bulbasaur', inputSearch: 'bulb' }}>
+    <PokemonContext.Provider value={{ dataPokemon: mockDetailPokemon, pokemonSearch: 'bulbasaur', inputSearch: 'bulb' }}>
       <ListPokemon />
     </PokemonContext.Provider>)
 })

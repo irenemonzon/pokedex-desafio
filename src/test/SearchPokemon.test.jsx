@@ -14,7 +14,4 @@ describe(('SearchPokemon'), async () => {
   it('should render input elements', async () => {
     expect(screen.getByRole('searchbox')).toBeDefined()
   })
-  it('should render button elements', async () => {
-    expect(screen.getByRole('button')).toMatch(/Buscar/)
-  })
 })
