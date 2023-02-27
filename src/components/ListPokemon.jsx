@@ -1,46 +1,41 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import { useContext } from 'react'
+import { PokemonContext } from '../context/PokemonContext'
 
 export const ListPokemon = () => {
-  const [dataListPokemon, setDataListPokemon] = useState([])
+  const context = useContext(PokemonContext)
+  const { dataPokemon } = context
+  //   const localPokemon = JSON.parse(window.localStorage.getItem('dataPokemon'))
+  //   console.log('localPokemon', localPokemon)
 
-  const getAllPokemon = async (limit = 150) => {
-    const url = 'https://pokeapi.co/api/v2/pokemon'
-    const res = await axios.get(`${url}?limit=${limit}&offset=0`)
-
-    const dataUrl = res.data.results.map(async (pokemon) => {
-      const res = await axios.get(pokemon.url)
-      const data = res.data
-      return data
-    })
-    const results = await Promise.all(dataUrl)
-    setDataListPokemon(results)
-  }
-
-  useEffect(() => {
-    getAllPokemon()
-  }, [])
   return (
     <>
-      {dataListPokemon && dataListPokemon.length
+      {dataPokemon
         ? (
-          <>
-            {dataListPokemon.map((pokemon) => (
-              <ul key={pokemon.name}>
-                <li>
-                  <img src={pokemon.sprites.front_default} />
-                </li>
-                <li>name: {pokemon.name}</li>
-                <li>
-                  {pokemon.types.map((type, index) => (
-                    <span key={index}>{type.type.name}</span>
-                  ))}
+          <div className=' grid grid-cols-3 md:grid-cols-3 gap-8 '>
+            {dataPokemon.map((pokemon) => (
+              <div className='flex justify-center items-center rounded  shadow-lg py-8 w-60 text-center' key={pokemon.name}>
+                <ul>
+                  <li className='flex justify-center items-center'>
+                    <img src={pokemon.sprites.front_default} />
+                  </li>
+                  <li>{pokemon.name}</li>
+                  <li>
+                    <span>
+                      tipo:
+                      {pokemon.types.map((type, index) => (
+                        <span key={index}> {type.type.name}</span>
+                      ))}
 
-                </li>
+                    </span>
 
-              </ul>
+                  </li>
+
+                </ul>
+
+              </div>
+
             ))}
-          </>
+          </div>
           )
         : <p> no existen pokemones</p>}
 
