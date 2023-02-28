@@ -1,30 +1,17 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { PokemonContext } from '../context/PokemonContext'
 import { firstWordUppercase } from '../utils/firstWordUppercase'
-import { ModalPokemon } from './ModalPokemon'
 
 export const ListPokemon = () => {
   const context = useContext(PokemonContext)
   const { dataPokemon, inputSearch } = context
-  const [showModal, setShowModal] = useState(false)
-  const [dataModalPokemon, setDataModalPokemon] = useState({})
   const filtered = dataPokemon?.slice(0, 151).filter((pokemon) => {
     return pokemon.name.toLowerCase().match(inputSearch.toLowerCase())
   })
 
-  const handleShowModal = (pokemon) => {
-    setDataModalPokemon(pokemon)
-    setShowModal(true)
-  }
-
   return (
     <>
-      {showModal && (
-        <ModalPokemon
-          setShowModal={setShowModal}
-          dataModalPokemon={dataModalPokemon}
-        />
-      )}
       {filtered.length
         ? (
           <div className='xs:flex flex-col xs:items-center sm:grid grid-cols-2 sm:gap-4 md:grid-cols-3 md:gap-8 lg:grid-cols-4 xl:grid-cols-5'>
@@ -40,9 +27,11 @@ export const ListPokemon = () => {
                   </li>
                   <li>Nº {pokemon.id}</li>
                   <li>{firstWordUppercase(pokemon.name)}</li>
-                  <li>
-                    <button type='button' onClick={() => handleShowModal(pokemon)} className='bg-blue-500 hover:bg-blue-700 text-white  px-4 rounded mt-4'>Ver Ficha</button>
-                  </li>
+
+                  <Link to={`pokemon/${pokemon.id}`} state={pokemon}>
+                    <button className='bg-blue-500 hover:bg-blue-700 text-white  px-4 rounded mt-4'>Ver Ficha</button>
+                  </Link>
+
                 </ul>
               </div>
             ))}

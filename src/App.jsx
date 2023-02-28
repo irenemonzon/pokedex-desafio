@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react'
-import { getPokemon } from './services/Pokemon.service'
-import { ListPokemon, SearchPokemon, Loading } from './components/index'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { PokemonContext } from './context/PokemonContext'
 import { useInput } from './hooks/useInput'
+import { getPokemon } from './services/Pokemon.service'
+import { Loading, HeaderNavigation } from './components/index'
+import { Home } from './pages/Home'
+import { PokemonDetailsPage } from './pages/PokemonDetailsPage'
 
 function App () {
   const [dataPokemon, setDataPokemon] = useState([])
@@ -11,9 +14,9 @@ function App () {
   const { inputSearch, onInputChange, onReset } = useInput({
     inputSearch: ''
   })
+
   const getPokemons = async () => {
     const getDataPokemon = await getPokemon()
-    console.log('getDataPokemon', getDataPokemon)
     const resPokemon = getDataPokemon.map((data) => {
       return data.data
     })
@@ -49,19 +52,19 @@ function App () {
       }}
     >
       <div>
-        <div className='container mx-auto mt-20 pb-10'>
-          <h1 className='font-black text-5xl text-center md:w-2/3 mx-auto text-orange-400 mb-8'>Pokemon Data</h1>
-          {loading
-            ? (
-              <>
-                <SearchPokemon />
-                <ListPokemon />
-              </>
+        {loading
+          ? (
+            <Routes>
+              <Route path='/' element={<HeaderNavigation />}>
+                <Route index element={<Home />} />
+                <Route path='pokemon/:id' element={<PokemonDetailsPage />} />
+              </Route>
 
-              )
-            : (<Loading />)}
+              <Route path='*' element={<Navigate to='/' />} />
+            </Routes>
 
-        </div>
+            )
+          : (<Loading />)}
 
       </div>
     </PokemonContext.Provider>
