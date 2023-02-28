@@ -1,12 +1,13 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { firstWordUppercase } from '../utils/firstWordUppercase'
 
 export const PokemonDetailsPage = () => {
   const location = useLocation()
   const detailsPokemon = location.state
   return (
-    <div className='flex  my-6 mx-auto w-full'>
-      <div className='flex xs:flex-col sm:flex-row lg:w-[80%] sm:justify-between content-center w-full rounded-xl border-2 bg-blue-400 shadow-lg py-20 mx-10 mt-[100px] relative text-white'>
+    <div className='flex flex-col my-6 mx-auto w-full'>
+
+      <div className='flex xs:flex-col sm:flex-row lg:w-[80%] sm:justify-between content-center w-full rounded-xl border-2 bg-blue-400 shadow-lg py-20 xs:mx-0  sm:mx-10 mt-[100px] relative text-white '>
         {detailsPokemon !== undefined && (
           <>
             <div className='flex flex-col mt-2 text-center justify-center ml-8  '>
@@ -59,6 +60,15 @@ export const PokemonDetailsPage = () => {
           </>
 
         )}
+      </div>
+      <div className='flex md:justify-end mt-4 xs:justify-center'>
+        <div className='w-32'>
+          <Link to='/'>
+            <button type='button' className='py-2.5 px-4 mr-2 mb-2 text-sm font-medium text-blue-900 focus:outline-none bg-blue-50 rounded-lg border border-blue-200 hover:bg-blue-200 hover:text-blue-700'>Volver</button>
+          </Link>
+
+        </div>
+
       </div>
     </div>
   )
