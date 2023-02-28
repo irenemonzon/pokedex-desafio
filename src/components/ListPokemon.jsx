@@ -21,7 +21,7 @@ export const ListPokemon = () => {
                 <ul>
                   <li className='flex justify-center items-center'>
                     <div>
-                      <img src={pokemon.sprites.front_default} />
+                      <img src={pokemon.sprites} />
                     </div>
 
                   </li>

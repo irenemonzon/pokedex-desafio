@@ -17,25 +17,27 @@ function App () {
 
   const getPokemons = async () => {
     const getDataPokemon = await getPokemon()
-    const resPokemon = getDataPokemon.map((data) => {
-      return data.data
-    })
-    console.log('resPokemon', resPokemon)
-    setDataPokemon(resPokemon)
-    setLoading(true)
-    const dataLocalStorage = []
-    resPokemon.map(object => dataLocalStorage.push({
-      name: object.name,
-      abilities: object.abilities,
-      types: object.types,
-      species: object.species,
-      location_area_encounters: object.location_area_encounters,
-      sprites: object.sprites.front_default,
-      height: object.height,
-      id: object.id,
-      weight: object.weight
+
+    const NewDataPokemon = []
+    getDataPokemon.map(pokemon => NewDataPokemon.push({
+      name: pokemon.data.name,
+      abilities: pokemon.data.abilities,
+      types: pokemon.data.types,
+      sprites: pokemon.data.sprites.front_default,
+      height: pokemon.data.height,
+      id: pokemon.data.id,
+      stats: pokemon.data.stats,
+      weight: pokemon.data.weight,
+      location_area_encounters: pokemon.data.location_area_encounters,
+      evolution: pokemon.dataEvolution.chain.evolves_to,
+      svg: pokemon.data.sprites.other.dream_world.front_default
+
     }))
-    window.localStorage.setItem('dataPokemon', JSON.stringify(dataLocalStorage))
+    console.log(' NewDataPokemon', NewDataPokemon)
+
+    setDataPokemon(NewDataPokemon)
+    setLoading(true)
+    window.localStorage.setItem('dataPokemon', JSON.stringify(NewDataPokemon))
   }
 
   useEffect(() => {
