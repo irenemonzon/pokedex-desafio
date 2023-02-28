@@ -11,11 +11,32 @@ function App () {
   const { inputSearch, onInputChange, onReset } = useInput({
     inputSearch: ''
   })
+  // const setInLocalStorage = (keyName, value) => {
+  //   try {
+  //     window.sessionStorage.setItem(keyName, JSON.stringify(value))
+  //   } catch (error) {
+  //     console.log('Error in local storage', error)
+  //     setInLocalStorage(keyName, JSON.parse(window.sessionStorage.getItem(keyName)))
+  //   }
+  // }
 
   const getPokemons = async () => {
     const getDataPokemon = await getPokemon()
     setDataPokemon(getDataPokemon)
     setLoading(true)
+    const dataLocalStorage = []
+    getDataPokemon.map(object => dataLocalStorage.push({
+      name: object.name,
+      abilities: object.abilities,
+      types: object.types,
+      species: object.species,
+      location_area_encounters: object.location_area_encounters,
+      sprites: object.sprites.front_default,
+      height: object.height,
+      id: object.id,
+      weight: object.weight
+    }))
+    window.localStorage.setItem('dataPokemon', JSON.stringify(dataLocalStorage))
   }
 
   useEffect(() => {

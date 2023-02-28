@@ -6,7 +6,7 @@ export const SearchPokemon = () => {
 
   return (
     <div className=' flex w-full'>
-      <div className='flex w-full justify-end my-8 pr-6'>
+      <div className='flex w-full  xs:justify-center md:justify-end my-8'>
 
         <div className='mr-4'>
           <input

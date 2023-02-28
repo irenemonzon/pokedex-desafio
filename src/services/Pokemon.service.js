@@ -10,6 +10,5 @@ export const getPokemon = async (limit = 150) => {
     return data
   })
   const results = await Promise.all(dataUrl)
-  //   window.localStorage.setItem('dataPokemon', JSON.stringify(results))
   return results
 }
