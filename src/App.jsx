@@ -33,7 +33,6 @@ function App () {
       svg: pokemon.data.sprites.other.dream_world.front_default
 
     }))
-    console.log(' NewDataPokemon', NewDataPokemon)
 
     setDataPokemon(NewDataPokemon)
     setLoading(true)
@@ -53,7 +52,7 @@ function App () {
         onReset
       }}
     >
-      <div>
+      <div className='container mx-auto '>
         {loading
           ? (
             <Routes>
