@@ -11,21 +11,17 @@ function App () {
   const { inputSearch, onInputChange, onReset } = useInput({
     inputSearch: ''
   })
-  // const setInLocalStorage = (keyName, value) => {
-  //   try {
-  //     window.sessionStorage.setItem(keyName, JSON.stringify(value))
-  //   } catch (error) {
-  //     console.log('Error in local storage', error)
-  //     setInLocalStorage(keyName, JSON.parse(window.sessionStorage.getItem(keyName)))
-  //   }
-  // }
-
   const getPokemons = async () => {
     const getDataPokemon = await getPokemon()
-    setDataPokemon(getDataPokemon)
+    console.log('getDataPokemon', getDataPokemon)
+    const resPokemon = getDataPokemon.map((data) => {
+      return data.data
+    })
+    console.log('resPokemon', resPokemon)
+    setDataPokemon(resPokemon)
     setLoading(true)
     const dataLocalStorage = []
-    getDataPokemon.map(object => dataLocalStorage.push({
+    resPokemon.map(object => dataLocalStorage.push({
       name: object.name,
       abilities: object.abilities,
       types: object.types,

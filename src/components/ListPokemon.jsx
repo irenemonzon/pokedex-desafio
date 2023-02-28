@@ -21,8 +21,8 @@ export const ListPokemon = () => {
     <>
       {showModal && (
         <ModalPokemon
-         setShowModal={setShowModal}
-        dataModalPokemon={dataModalPokemon}
+          setShowModal={setShowModal}
+          dataModalPokemon={dataModalPokemon}
         />
       )}
       {filtered.length
@@ -41,8 +41,8 @@ export const ListPokemon = () => {
                   <li>Nº {pokemon.id}</li>
                   <li>{firstWordUppercase(pokemon.name)}</li>
                   <li>
-                  <button type='button' onClick={() => handleShowModal(pokemon)} className='bg-blue-500 hover:bg-blue-700 text-white  px-4 rounded mt-4'>Ver Ficha</button>  
-                  </li> 
+                    <button type='button' onClick={() => handleShowModal(pokemon)} className='bg-blue-500 hover:bg-blue-700 text-white  px-4 rounded mt-4'>Ver Ficha</button>
+                  </li>
                 </ul>
               </div>
             ))}
