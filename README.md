@@ -27,6 +27,12 @@ Para su instalación
 
 - Visualizar la interfaz en el servidor local http://localhost:5173/
 
+### npm run test
+
+Para correr los test
+
 ### npm run dev
+
+Para correr la aplicacion en el local
 
 ## Para visualizar el prototipo [Click aqui](https://pokemondataimonzon.netlify.app/)
