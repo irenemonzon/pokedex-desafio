@@ -17,7 +17,7 @@ Para su instalación
 
 ### git clone
 
-- Posicionarse en la carpeta RentabilidadApp
+- Posicionarse en la carpeta pokedex-desafio
 
 ### cd pokedex-desafio
 
